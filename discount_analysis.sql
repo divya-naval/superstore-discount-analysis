@@ -39,3 +39,43 @@ FROM dbo.orders
 WHERE Category = 'Furniture' AND Discount > 0.20
 GROUP BY Sub_Category
 ORDER BY Total_Profit;
+
+-- Sales and profit margin by customer segment
+USE SuperstoreDB;
+GO
+
+SELECT
+    Segment,
+    CAST(SUM(Sales) AS DECIMAL(12,0)) AS Total_Sales,
+    CAST(SUM(Profit) AS DECIMAL(12,0)) AS Total_Profit,
+    CAST(100.0 * SUM(Profit) / SUM(Sales) AS DECIMAL(5,1)) AS Profit_Margin_Pct,
+    CAST(100.0 * SUM(Sales) / SUM(SUM(Sales)) OVER () AS DECIMAL(5,1)) AS Pct_of_Total_Sales
+FROM dbo.orders
+GROUP BY Segment
+ORDER BY Total_Sales DESC;
+GO
+
+-- Top 10 customers by sales (the #1 customer, Sean Miller, loses money)
+SELECT TOP 10
+    Customer_Name,
+    Segment,
+    CAST(SUM(Sales) AS DECIMAL(12,0)) AS Total_Sales,
+    CAST(SUM(Profit) AS DECIMAL(12,0)) AS Total_Profit,
+    CAST(100.0 * SUM(Profit) / NULLIF(SUM(Sales), 0) AS DECIMAL(5,1)) AS Profit_Margin_Pct
+FROM dbo.orders
+GROUP BY Customer_Name, Segment
+ORDER BY Total_Sales DESC;
+GO
+
+-- Why Sean Miller loses money: Machines with a 50% average discount
+SELECT
+    Category,
+    Sub_Category,
+    CAST(SUM(Sales) AS DECIMAL(12,0)) AS Total_Sales,
+    CAST(SUM(Profit) AS DECIMAL(12,0)) AS Total_Profit,
+    CAST(100.0 * AVG(Discount) AS DECIMAL(5,1)) AS Avg_Discount_Pct
+FROM dbo.orders
+WHERE Customer_Name = 'Sean Miller'
+GROUP BY Category, Sub_Category
+ORDER BY Total_Profit ASC;
+GO
