@@ -1,8 +1,7 @@
 # Superstore Discount Analysis: When Discounts Turn Furniture into a Loss-Maker
 
 ## Problem
-Does discounting hurt profit in the Furniture category, and where should discounts be capped?
-
+How do discounts affect profit in the Furniture category, and where should they be capped?
 ## Data
 Superstore sales orders dataset (Furniture category: sales, profit, discount, sub-category, region).
 
