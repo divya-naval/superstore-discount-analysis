@@ -16,6 +16,7 @@ Superstore sales orders dataset (Furniture category: sales, profit, discount, su
 - Margin falls to **-18.3%** at 21-40% discount and **-70.9%** above 40%.
 - The 542 order lines with discounts over 20% lost **$54,478** in total.
 - Tables (-$30,698) and Bookcases (-$11,098) account for about **77%** of those losses.
+- **Beyond Furniture:** The #1 customer by sales, Sean Miller, has a -7.9% profit margin. His loss comes from Machines orders discounted by 50% on average, which supports capping discounts at 20%.
 
 ![Dashboard](dashboard-furniture.png)
 
