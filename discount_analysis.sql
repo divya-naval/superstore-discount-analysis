@@ -79,3 +79,30 @@ WHERE Customer_Name = 'Sean Miller'
 GROUP BY Category, Sub_Category
 ORDER BY Total_Profit ASC;
 GO
+
+-- Top 10 customers by profit (the most profitable customers all have margins above 34%)
+USE SuperstoreDB;
+GO
+
+SELECT TOP 10
+    Customer_Name,
+    Segment,
+    CAST(SUM(Sales) AS DECIMAL(12,0)) AS Total_Sales,
+    CAST(SUM(Profit) AS DECIMAL(12,0)) AS Total_Profit,
+    CAST(100.0 * SUM(Profit) / NULLIF(SUM(Sales), 0) AS DECIMAL(5,1)) AS Profit_Margin_Pct
+FROM dbo.orders
+GROUP BY Customer_Name, Segment
+ORDER BY Total_Profit DESC;
+GO
+
+-- Sales, profit and average discount by region (Central discounts most and earns the least)
+SELECT
+    Region,
+    CAST(SUM(Sales) AS DECIMAL(12,0)) AS Total_Sales,
+    CAST(SUM(Profit) AS DECIMAL(12,0)) AS Total_Profit,
+    CAST(100.0 * SUM(Profit) / NULLIF(SUM(Sales), 0) AS DECIMAL(5,1)) AS Profit_Margin_Pct,
+    CAST(100.0 * AVG(Discount) AS DECIMAL(5,1)) AS Avg_Discount_Pct
+FROM dbo.orders
+GROUP BY Region
+ORDER BY Total_Sales DESC;
+GO

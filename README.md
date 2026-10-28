@@ -17,6 +17,8 @@ Superstore sales orders dataset (Furniture category: sales, profit, discount, su
 - The 542 order lines with discounts over 20% lost **$54,478** in total.
 - Tables (-$30,698) and Bookcases (-$11,098) account for about **77%** of those losses.
 - **Beyond Furniture:** The #1 customer by sales, Sean Miller, has a -7.9% profit margin. His loss comes from Machines orders discounted by 50% on average, which supports capping discounts at 20%.
+- **By region:** Central has the lowest margin (7.9%) and the highest average discount (24.0%). West earns the most profit ($108,418) at a 14.9% margin with only a 10.9% average discount.
+- **Best customers:** The most profitable customers, such as Tamara Chand ($8,981 profit, 47.1% margin), all have margins above 34%, while the top customer by sales, Sean Miller, loses money.
 
 ![Dashboard](dashboard-furniture.png)
 
