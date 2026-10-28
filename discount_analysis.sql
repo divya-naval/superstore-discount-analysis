@@ -106,3 +106,14 @@ FROM dbo.orders
 GROUP BY Region
 ORDER BY Total_Sales DESC;
 GO
+
+-- Check: margin by Furniture sub-category at 0% discount
+-- Tables 18.5%, Bookcases 19.0%, Chairs 24.1%, Furnishings 27.4%
+-- Shows these products are profitable at full price, so the losses come from discounting
+SELECT Sub_Category,
+       COUNT(*) AS Order_Lines,
+       ROUND(SUM(Profit) / SUM(Sales) * 100, 1) AS Profit_Margin_Pct
+FROM dbo.orders
+WHERE Category = 'Furniture' AND Discount = 0
+GROUP BY Sub_Category
+ORDER BY Profit_Margin_Pct;
