@@ -8,7 +8,7 @@ Superstore sales orders dataset (Furniture category: sales, profit, discount, su
 
 ## Method
 - **Excel:** cleaned the data and grouped orders into discount bands.
-- **SQL (SSMS):** calculated profit margin by discount band and verified the results.
+- **SQL (SSMS):** calculated profit margin by discount band, then added segment, customer and region queries and verified the results.
 - **Power BI:** built an interactive dashboard with Category and Region slicers.
 
 ## Findings
